@@ -35,7 +35,7 @@ Sistema de monitoramento e triagem de riscos ambientais em municípios brasileir
 ## 🗂️ Estrutura do Repositório
 
 ```
-global-solution-2026-fund/
+GS.SpaceConnect.Dynamic/
 ├── README.md
 ├── requirements.txt
 ├── data/
