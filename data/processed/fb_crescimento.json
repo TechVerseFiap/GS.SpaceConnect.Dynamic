@@ -1,0 +1,72 @@
+[
+  {
+    "n": 3,
+    "tempo_ms": 0.011395000001357403,
+    "caminhos_avaliados": 2,
+    "chamadas_recursivas": 4,
+    "melhor_custo": 3.0
+  },
+  {
+    "n": 4,
+    "tempo_ms": 0.01626499999929365,
+    "caminhos_avaliados": 5,
+    "chamadas_recursivas": 10,
+    "melhor_custo": 4.0
+  },
+  {
+    "n": 5,
+    "tempo_ms": 0.08601799999041759,
+    "caminhos_avaliados": 16,
+    "chamadas_recursivas": 32,
+    "melhor_custo": 5.0
+  },
+  {
+    "n": 6,
+    "tempo_ms": 0.07269600001791332,
+    "caminhos_avaliados": 65,
+    "chamadas_recursivas": 130,
+    "melhor_custo": 6.0
+  },
+  {
+    "n": 7,
+    "tempo_ms": 0.4727610000259119,
+    "caminhos_avaliados": 326,
+    "chamadas_recursivas": 652,
+    "melhor_custo": 7.0
+  },
+  {
+    "n": 8,
+    "tempo_ms": 2.9773779999686667,
+    "caminhos_avaliados": 1957,
+    "chamadas_recursivas": 3914,
+    "melhor_custo": 8.0
+  },
+  {
+    "n": 9,
+    "tempo_ms": 21.790016000011292,
+    "caminhos_avaliados": 13700,
+    "chamadas_recursivas": 27400,
+    "melhor_custo": 9.0
+  },
+  {
+    "n": 10,
+    "tempo_ms": 213.06854100004102,
+    "caminhos_avaliados": 109601,
+    "chamadas_recursivas": 219202,
+    "melhor_custo": 10.0
+  },
+  {
+    "n": 11,
+    "tempo_ms": 4793.659958999968,
+    "caminhos_avaliados": 986410,
+    "chamadas_recursivas": 1972820,
+    "melhor_custo": 11.0
+  },
+  {
+    "n": 12,
+    "tempo_ms": 45982.58913299998,
+    "caminhos_avaliados": 9864101,
+    "chamadas_recursivas": 19728202,
+    "melhor_custo": 12.0
+  }
+]
