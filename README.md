@@ -7,13 +7,13 @@
 
 ## 👥 Integrantes do Grupo
 
-| RA | Nome |
+| RM | Nome |
 |----|------|
-| XXXXXXX | Integrante 1 |
-| XXXXXXX | Integrante 2 |
-| XXXXXXX | Integrante 3 |
-
-> ⚠️ Substitua os valores acima com RA e Nome reais dos integrantes.
+| 566223 | Davi Marques de Andrade Munhoz |
+| 562559 | Diogo Oliveira Lima            |
+| 566539 | Leandro Simoneli da Silva      |
+| 562414 | Lucas dos Reis Aquino          |
+| 565356 | Lucas Perez Bonato             |
 
 ---
 
