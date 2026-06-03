@@ -20,7 +20,7 @@ from data_structures import (
     construir_grafo_rs, construir_grafo_matopiba, construir_bst,
 )
 from brute_force import forca_bruta_caminhos, resetar_contadores
-from greedy import dijkstra, reconstruir_caminho
+from greedy import dijkstra, reconstruir_caminho, planejar_atendimento
 
 
 # ===========================================================================
@@ -94,6 +94,10 @@ class TestGrafo:
         assert 4 in viz_0
         viz_1 = [v for v, _ in grafo_simples.vizinhos(1)]
         assert 0 in viz_1
+
+    def test_vizinhos_inexistente_retorna_lista_vazia(self):
+        g = Grafo()
+        assert g.vizinhos(999) == []
 
     def test_num_arestas(self, grafo_simples):
         assert grafo_simples.num_arestas() == 6
@@ -196,6 +200,21 @@ class TestBST:
         in_order = [risco(v) for v in bst.percurso_in_order()]
         assert in_order == sorted(in_order)
 
+    def test_remover_no_com_um_filho(self):
+        bst = BinarySearchTree()
+        bst.inserir(criar_vertice(0, "Raiz", 0.5, 100.0, 1000))
+        bst.inserir(criar_vertice(1, "Filho", 0.3, 100.0, 1000))
+        bst.remover(0)
+        assert len(bst) == 1
+        in_order = [risco(v) for v in bst.percurso_in_order()]
+        assert in_order == [0.3]
+
+    def test_remover_id_inexistente_nao_altera_tamanho(self):
+        bst = BinarySearchTree()
+        bst.inserir(criar_vertice(0, "M0", 0.5, 100.0, 1000))
+        bst.remover(99)
+        assert len(bst) == 1
+
     def test_bst_rs_ordenado(self, bst_rs):
         in_order = [risco(v) for v in bst_rs.percurso_in_order()]
         assert in_order == sorted(in_order)
@@ -273,6 +292,20 @@ class TestDijkstra:
         )
         assert custo_recalc == pytest.approx(dist[4])
 
+    def test_reconstrucao_sem_caminho_retorna_lista_vazia(self):
+        g = Grafo()
+        g.adicionar_vertice(criar_vertice(0, "M0", 0.1, 100.0, 1000))
+        g.adicionar_vertice(criar_vertice(1, "M1", 0.2, 100.0, 1000))
+        dist, pred, _ = dijkstra(g, 0)
+        assert dist[1] == float("inf")
+        assert reconstruir_caminho(pred, 0, 1) == []
+
+    def test_reconstrucao_origem_igual_destino(self):
+        g = Grafo()
+        g.adicionar_vertice(criar_vertice(0, "M0", 0.1, 100.0, 1000))
+        _, pred, _ = dijkstra(g, 0)
+        assert reconstruir_caminho(pred, 0, 0) == [0]
+
     def test_sem_caminho_retorna_infinito(self):
         g = Grafo()
         g.adicionar_vertice(criar_vertice(0, "M0", 0.1, 100.0, 1000))
@@ -334,3 +367,43 @@ class TestIntegracao:
         dist_dij, _, _ = dijkstra(grafo_rs, hub)
 
         assert dist_dij[destino] == pytest.approx(res_fb["melhor_custo"], rel=1e-6)
+
+    def test_planejamento_ordem_por_risco_e_distancia(self):
+        g = Grafo()
+        v_hub = criar_vertice(0, "Hub", 0.20, 100.0, 1000)
+        v_a = criar_vertice(1, "A", 0.95, 100.0, 1000)
+        v_b = criar_vertice(2, "B", 0.95, 100.0, 1000)
+        v_c = criar_vertice(3, "C", 0.85, 100.0, 1000)
+        v_low = criar_vertice(4, "D", 0.50, 100.0, 1000)
+        for v in [v_hub, v_a, v_b, v_c, v_low]:
+            g.adicionar_vertice(v)
+        g.adicionar_aresta(0, 1, 5.0)
+        g.adicionar_aresta(0, 2, 2.0)
+        g.adicionar_aresta(0, 3, 4.0)
+        g.adicionar_aresta(0, 4, 1.0)
+
+        bst = BinarySearchTree()
+        for v in [v_hub, v_a, v_b, v_c, v_low]:
+            bst.inserir(v)
+
+        planos = planejar_atendimento(g, bst, hub=0, limiar_risco=0.80, orcamento_km=10)
+        ids_ordenados = [p["id"] for p in planos]
+        assert ids_ordenados == [2, 1, 3]
+
+    def test_planejamento_respeita_orcamento(self):
+        g = Grafo()
+        v_hub = criar_vertice(0, "Hub", 0.20, 100.0, 1000)
+        v_a = criar_vertice(1, "A", 0.95, 100.0, 1000)
+        v_b = criar_vertice(2, "B", 0.95, 100.0, 1000)
+        for v in [v_hub, v_a, v_b]:
+            g.adicionar_vertice(v)
+        g.adicionar_aresta(0, 1, 5.0)
+        g.adicionar_aresta(0, 2, 2.0)
+
+        bst = BinarySearchTree()
+        for v in [v_hub, v_a, v_b]:
+            bst.inserir(v)
+
+        planos = planejar_atendimento(g, bst, hub=0, limiar_risco=0.80, orcamento_km=3)
+        ids_ordenados = [p["id"] for p in planos]
+        assert ids_ordenados == [2]
