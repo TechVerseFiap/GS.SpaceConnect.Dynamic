@@ -77,6 +77,32 @@ GS.SpaceConnect.Dynamic/
 pip install -r requirements.txt
 ```
 
+### Criação de Ambiente Virtual (Opcional, Recomendado)
+
+Para evitar conflitos entre dependências do sistema e do projeto, recomenda-se utilizar um ambiente virtual Python.
+
+#### Windows
+
+```bash
+python -m venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+#### Linux / macOS
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+Para sair do ambiente virtual:
+
+```bash
+deactivate
+```
+
 ### Execução dos Módulos
 
 ```bash
