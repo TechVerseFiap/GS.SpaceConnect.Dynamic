@@ -1,7 +1,8 @@
-# Global Solution 2026 — Monitoramento de Riscos Ambientais
+# 🌍 Global Solution 2026 — Monitoramento de Riscos Ambientais
 
-**FIAP — 1º Semestre de 2026 | Estruturas de Dados e Algoritmos**
-**Tema: Economia Espacial / Dynamic Programming**
+**FIAP — 1º Semestre de 2026**  
+**Disciplina:** Estruturas de Dados e Algoritmos  
+**Tema:** Economia Espacial / Dynamic Programming
 
 ---
 
@@ -10,47 +11,53 @@
 | RM | Nome |
 |----|------|
 | 566223 | Davi Marques de Andrade Munhoz |
-| 562559 | Diogo Oliveira Lima            |
-| 566539 | Leandro Simoneli da Silva      |
-| 562414 | Lucas dos Reis Aquino          |
-| 565356 | Lucas Perez Bonato             |
+| 562559 | Diogo Oliveira Lima |
+| 566539 | Leandro Simoneli da Silva |
+| 562414 | Lucas dos Reis Aquino |
+| 565356 | Lucas Perez Bonato |
 
 ---
 
 ## 📌 Descrição
 
-Sistema de monitoramento e triagem de riscos ambientais em municípios brasileiros, construído com:
+Sistema de monitoramento e triagem de riscos ambientais em municípios brasileiros utilizando estruturas de dados e algoritmos para apoiar a tomada de decisão em cenários de desastres naturais.
 
-- **Grafo ponderado** de municípios e conexões (estradas/rotas)
-- **Árvore Binária de Busca (BST)** para consultas por índice de risco
-- **Força Bruta** para validação em instâncias pequenas (N ≤ 12)
-- **Algoritmo Guloso (Dijkstra)** para instâncias reais
+### Tecnologias e Conceitos Aplicados
 
-### Cenários implementados
-- **Cenário A** — Rede de resposta a enchentes no Rio Grande do Sul
-- **Cenário B** — Triagem de risco de seca no MATOPIBA
+- 🗺️ **Grafo ponderado** para representar municípios e conexões (estradas e rotas)
+- 🌳 **Árvore Binária de Busca (BST)** para consultas eficientes por índice de risco
+- 🔍 **Força Bruta** para validação de resultados em instâncias pequenas (*N ≤ 12*)
+- ⚡ **Algoritmo Guloso (Dijkstra)** para execução eficiente em cenários reais
+
+### Cenários Implementados
+
+#### Cenário A — Rede de Resposta a Enchentes no Rio Grande do Sul
+Simulação da melhor rota de atendimento para municípios afetados por enchentes.
+
+#### Cenário B — Triagem de Risco de Seca no MATOPIBA
+Classificação e priorização de municípios com maior vulnerabilidade à seca.
 
 ---
 
 ## 🗂️ Estrutura do Repositório
 
-```
+```text
 GS.SpaceConnect.Dynamic/
 ├── README.md
 ├── requirements.txt
 ├── data/
-│   ├── raw/                  # Dados brutos: NDVI, pluviometria, malha viária
-│   └── processed/            # Grafos e árvores serializados (JSON/pickle)
+│   ├── raw/                  # Dados brutos: NDVI, pluviometria e malha viária
+│   └── processed/            # Grafos e árvores serializados (JSON/Pickle)
 ├── src/
-│   ├── data_structures.py    # Lista, tupla, dict, heap, árvore binária, grafo
-│   ├── brute_force.py        # Enumeração completa — baseline de validação
-│   ├── greedy.py             # Dijkstra — solução eficiente
-│   ├── performance_monitor.py# Tempo, memória, contadores de operações
-│   └── visualizations.py     # Grafos, árvores e figuras obrigatórias
+│   ├── data_structures.py     # Lista, tupla, dict, heap, BST e grafo
+│   ├── brute_force.py         # Enumeração completa (baseline de validação)
+│   ├── greedy.py              # Implementação do algoritmo de Dijkstra
+│   ├── performance_monitor.py # Métricas de desempenho
+│   └── visualizations.py      # Geração de gráficos e visualizações
 ├── notebooks/
 │   └── analise_resultados.ipynb
 ├── tests/
-│   └── test_algorithms.py    # Testes unitários (pytest)
+│   └── test_algorithms.py
 └── report/
     └── relatorio_final.pdf
 ```
@@ -60,15 +67,18 @@ GS.SpaceConnect.Dynamic/
 ## ⚙️ Instalação e Execução
 
 ### Pré-requisitos
-- Python 3.10+
+
+- Python 3.10 ou superior
 - pip
 
-### Instalar dependências
+### Instalação das Dependências
+
 ```bash
 pip install -r requirements.txt
 ```
 
-### Executar demonstração completa
+### Execução dos Módulos
+
 ```bash
 python src/data_structures.py
 python src/brute_force.py
@@ -77,37 +87,63 @@ python src/performance_monitor.py
 python src/visualizations.py
 ```
 
-### Executar testes
+### Execução dos Testes
+
 ```bash
 pytest tests/ -v
 ```
 
-### Jupyter Notebook (análise interativa)
+### Análise Interativa com Jupyter Notebook
+
 ```bash
 jupyter notebook notebooks/analise_resultados.ipynb
 ```
 
 ---
 
-## 📊 Módulos
+## 📊 Módulos do Projeto
 
 | Módulo | Descrição |
-|--------|-----------|
-| `data_structures.py` | Implementação de Node, BST, Grafo com dict de listas de adjacência |
-| `brute_force.py` | Backtracking para enumerar todos os caminhos; baseline ótimo |
-| `greedy.py` | Dijkstra com heapq; reconstrução de caminho |
-| `performance_monitor.py` | Benchmark de tempo (perf_counter) e memória (tracemalloc) |
-| `visualizations.py` | Gráficos com networkx/matplotlib; visualização da BST |
+|---------|------------|
+| `data_structures.py` | Implementação das estruturas de dados utilizadas no projeto |
+| `brute_force.py` | Busca exaustiva por todos os caminhos possíveis |
+| `greedy.py` | Implementação do algoritmo de Dijkstra utilizando heap |
+| `performance_monitor.py` | Monitoramento de tempo, memória e quantidade de operações |
+| `visualizations.py` | Visualização de grafos, BSTs e gráficos de desempenho |
+
+---
+
+## 📈 Métricas Avaliadas
+
+O projeto realiza comparações entre as abordagens de **Força Bruta** e **Algoritmo Guloso**, considerando:
+
+- Tempo de execução
+- Consumo de memória
+- Quantidade de operações realizadas
+- Escalabilidade para diferentes tamanhos de entrada
 
 ---
 
 ## 🔗 Fontes de Dados
-- IBGE — malha municipal: ibge.gov.br/geociencias
-- INMET — dados climáticos: bdmep.inmet.gov.br
-- DNIT — malha viária: dnit.gov.br
-- NASA Earthdata — NDVI MODIS: earthdata.nasa.gov
+
+- IBGE — Malha Municipal: https://www.ibge.gov.br/geociencias
+- INMET — Dados Climáticos: https://bdmep.inmet.gov.br
+- DNIT — Malha Viária: https://www.gov.br/dnit
+- NASA Earthdata — NDVI MODIS: https://www.earthdata.nasa.gov
 
 ---
 
-## 🌍 ODS Relacionados
-ODS 2 (Fome Zero), ODS 9 (Indústria e Infraestrutura), ODS 11 (Cidades Sustentáveis), ODS 13 (Ação Climática)
+## 🌱 Objetivos de Desenvolvimento Sustentável (ODS)
+
+Este projeto está alinhado com os seguintes ODS da ONU:
+
+- **ODS 2** — Fome Zero e Agricultura Sustentável
+- **ODS 9** — Indústria, Inovação e Infraestrutura
+- **ODS 11** — Cidades e Comunidades Sustentáveis
+- **ODS 13** — Ação Contra a Mudança Global do Clima
+
+---
+
+## 📄 Licença
+
+Projeto acadêmico desenvolvido para a disciplina de **Estruturas de Dados e Algoritmos** da FIAP.
